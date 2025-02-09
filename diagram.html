@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Feature Diagrams</title>
+<style>
+    svg {
+        border: 1px solid #ddd;
+        margin-bottom: 20px;
+        display: block;
+    }
+    h2 {
+        margin-top: 30px;
+    }
+</style>
+</head>
+<body>
+
+<h1>Image Feature Diagrams</h1>
+
+<h2>1. Convexity and Concavity</h2>
+
+<svg width="700" height="200">
+  <!-- Convex Shape (Ellipse) -->
+  <ellipse cx="100" cy="100" rx="60" ry="40" stroke="black" stroke-width="2" fill="lightgreen" />
+  <text x="70" y="170">Convex</text>
+  <text x="55" y="190">(Solidity ≈ 1)</text>
+
+  <!-- Concave Shape (Pac-Man) -->
+  <path d="M300 100
+           A40 40 0 1 1 300 100
+           L300 60
+           A40 40 0 0 0 340 100 Z"
+        stroke="black" stroke-width="2" fill="lightblue" />
+    <circle cx="320" cy="80" r="5" fill="black"/>
+  <text x="270" y="170">Concave</text>
+  <text x="255" y="190">(Solidity < 1)</text>
+
+  <!-- Irregular Shape with Convex Hull -->
+  <polygon points="500,30 550,80 600,60 650,130 580,160 520,100"
+           stroke="black" stroke-width="2" fill="lightcoral" />
+  <polygon points="500,30 550,80 600,60 650,130 580,160 520,100 500,30"
+           stroke="blue" stroke-width="2" stroke-dasharray="5,5" fill="none"/>
+  <text x="530" y="170">Irregular</text>
+  <text x="510" y="190">(Convex Hull: Dashed)</text>
+
+  <text x="10" y="20">Solidity = Object Area / Convex Hull Area</text>
+</svg>
+
+<p>
+  <b>Convexity</b>: "Outward-bulging".  <b>Concavity</b>: "Inward-curving".
+  <b>Solidity</b>: Object's area divided by its <b>convex hull</b> area.
+</p>
+<ul>
+    <li>Convex object: Solidity ≈ 1.</li>
+    <li>Concave object: Solidity < 1.</li>
+</ul>
+
+<h2>2. Aspect Ratio</h2>
+
+<svg width="700" height="180">
+  <!-- Elongated Object -->
+  <rect x="50" y="70" width="200" height="40" stroke="black" stroke-width="2" fill="orange" />
+  <line x1="50" y1="90" x2="250" y2="90" stroke="red" stroke-width="3" />
+  <line x1="150" y1="70" x2="150" y2="110" stroke="blue" stroke-width="3" />
+  <text x="130" y="60">Length</text>
+  <text x="260" y="95">Width</text>
+  <text x="50" y="140">Aspect Ratio = Length / Width</text>
+  <text x="120" y="160">(High)</text>
+
+  <!-- Round Object -->
+  <rect x="400" y="60" width="80" height="80" stroke="black" stroke-width="2" fill="yellow" />
+  <line x1="400" y1="100" x2="480" y2="100" stroke="red" stroke-width="3" />
+  <line x1="440" y1="60" x2="440" y2="140" stroke="blue" stroke-width="3" />
+  <text x="490" y="100">Width</text>
+  <text x="420" y="50">Length</text>
+  <text x="400" y="160">Aspect Ratio ≈ 1 (Low)</text>
+</svg>
+
+<p>
+  <b>Aspect Ratio</b>: Ratio of length to width.
+</p>
+<ul>
+    <li>High aspect ratio: Elongated.</li>
+    <li>Aspect ratio ≈ 1: Circular/square.</li>
+</ul>
+
+<h2>3. Form Factor (Circularity)</h2>
+
+<svg width="700" height="180">
+    <!-- Circle -->
+    <circle cx="100" cy="90" r="40" fill="lightgreen" stroke="black" stroke-width="2"/>
+    <text x="75" y="160">Form Factor ≈ 1</text>
+
+    <!-- Ellipse -->
+    <ellipse cx="300" cy="90" rx="60" ry="30" fill="lightblue" stroke="black" stroke-width="2"/>
+    <text x="275" y="160">Form Factor < 1</text>
+
+    <!-- Irregular Shape -->
+    <path d="M500 90
+             C 520 50, 580 50, 600 90
+             C 580 130, 520 130, 500 90
+             Z"
+          stroke="black" stroke-width="2" fill="lightcoral" />
+    <text x="520" y="160">Form Factor < 1</text>
+
+    <text x="10" y="20">Form Factor = (4 * π * Area) / (Perimeter²)</text>
+</svg>
+
+<p>
+    <b>Form Factor</b> (Circularity): How close a shape is to a perfect circle.
+</p>
+<ul>
+    <li>Perfect circle: Form factor = 1.</li>
+    <li>Elongated/irregular: Form factor < 1.</li>
+</ul>
+
+<h2>4. Perimeter-Area Ratio (P/A Ratio)</h2>
+
+<svg width="700" height="250">
+    <!-- Small Circle -->
+    <circle cx="70" cy="80" r="25" fill="lightgreen" stroke="black" stroke-width="2"/>
+    <text x="30" y="145">Small Circle</text>
+     <text x="30" y="165">Lower P/A Ratio</text>
+
+
+    <!-- Large Circle -->
+    <circle cx="200" cy="80" r="45" fill="lightgreen" stroke="black" stroke-width="2"/>
+    <text x="165" y="145">Large Circle</text>
+     <text x="155" y="165">Medium P/A Ratio</text>
+
+
+    <!-- Simple Irregular Shape -->
+    <path d="M330 80
+             L 350 60, 370 80, 390 60, 410 80, 430 60,
+             430 100, 410 80, 390 100, 370 80, 350 100, 330 80 Z"
+          stroke="black" stroke-width="2" fill="lightblue" />
+    <text x="330" y="145">Simple Irregular</text>
+    <text x="340" y="165">High P/A Ratio</text>
+
+    <!-- Complex Irregular Shape -->
+    <path d="M500 80
+             C 520 40, 580 40, 600 80
+             C 580 120, 520 120, 500 80
+             Z"
+          stroke="black" stroke-width="2" fill="lightcoral" />
+      <path d="M500 80
+             L 510 70, 520 80, 530 70, 540 80, 550 70, 560 80, 570 70, 580 80, 590 70, 600 80,
+             600 90, 590 100, 580 90, 570 100, 560 90, 550 100, 540 90, 530 100, 520 90, 510 100, 500 90 Z"
+          stroke="black" stroke-width="2" fill="none" />
+    <text x="510" y="145">Complex Irregular</text>
+    <text x="520" y="165">Very High P/A Ratio</text>
+
+    <text x="10" y="20">Perimeter-Area Ratio = Perimeter / Area</text>
+     <line x1="10" y1="200" x2="690" y2="200" stroke="black" stroke-width="1"/>
+    <text x="10" y="230">For the *same shape*, a *larger* object will have a *smaller* P/A ratio.</text>
+
+</svg>
+<p>
+    <b>Perimeter-Area Ratio (P/A Ratio)</b>: Ratio of perimeter to area.  Proxy for surface area-to-volume ratio in 2D.  A higher P/A ratio indicates a more complex or convoluted boundary *relative to the object's size*.
+</p>
+<ul>
+    <li><b>Shape Complexity:</b>  For objects of *similar size*, a higher P/A ratio indicates a more complex shape (more indentations, protrusions, or a more elongated form).</li>
+    <li><b>Size Effect (Same Shape):</b>  For objects of the *same shape*, a *larger* object will have a *smaller* P/A ratio.  This is because area increases faster than perimeter as an object scales up.</li>
+    <li><b>Combined Effect:</b> In real-world data, both shape complexity and size influence the P/A ratio.  You need to consider both factors when interpreting this value.</li>
+</ul>
+
+</body>
+</html>
