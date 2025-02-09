@@ -108,48 +108,52 @@ Before running this script, ensure you have the following installed:
 
 These features provide fundamental descriptors of object shape and location.
 
-| Feature             | Description                                                                                                                                                                                                                                                           |
-| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `label`             | **Object Identifier.** A unique number to identify each segmented object.                                                                                                                                                                                            |
-| `object_area`       | **Size of the Object.** The number of pixels within the object.                                                                                                                                                                                                       |
-| `centroid-0`, `centroid-1` | **Object Location.** (y, x) or (row, column) coordinates of the object's center.                                                                                                                                                                                    |
-| `length`            | **Object Elongation (Major Axis).** Length of the major axis of the best-fitting ellipse.                                                                                                                                                                              |
-| `width`             | **Object Elongation (Minor Axis).** Length of the minor axis of the best-fitting ellipse.                                                                                                                                                                              |
-| `shape_eccentricity` | **Object Elongation (Ratio).**  How much the shape deviates from a circle (0 = circle, 1 = line).                                                                                                                                                                    |
-| `shape_solidity`    | **Object Convexity.** Ratio of object area to its convex hull area (closer to 1 = more convex).                                                                                                                                                                      |
-| `shape_extent`      | **Object Compactness within Bounding Box.** Ratio of object area to bounding box area.                                                                                                                                                                                |
-| `shape_orientation` | **Object Orientation.** Angle of the major axis of the best-fitting ellipse (relative to horizontal).                                                                                                                                                                |
-| `object_perimeter`  | **Object Boundary Length.** Length of the object's outer boundary.                                                                                                                                                                                                    |
+| Feature             | Description                                                                                                                   |
+| --------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `label`             | **Object Identifier.** A unique integer ID for each segmented object.                                                       |
+| `object_area`       | **Object Area.** The number of pixels within the object's mask.                                                              |
+| `centroid-0`, `centroid-1` | **Object Centroid.** (y, x) or (row, column) coordinates of the object's center.                                          |
+| `length`            | **Major Axis Length.** Length of the major axis of the best-fitting ellipse.                                                 |
+| `width`             | **Minor Axis Length.** Length of the minor axis of the best-fitting ellipse.                                                 |
+| `shape_eccentricity` | **Eccentricity.**  A measure of how elongated the object is (0 = circle, 1 = line).                                         |
+| `shape_solidity`    | **Solidity.** Ratio of the object's area to its convex hull area (closer to 1 = more convex, less concave).                 |
+| `shape_extent`      | **Extent.** Ratio of the object's area to the area of its bounding box.                                                        |
+| `shape_orientation` | **Orientation.** Angle (in radians) of the major axis of the best-fitting ellipse, relative to the horizontal axis.          |
+| `object_perimeter`  | **Perimeter.** The total length of the object's boundary.                                                                     |
 
 ### 2. Intensity Features
 
-These features quantify the fluorescence intensity.
+These features quantify the fluorescence intensity within each object.
 
-| Feature               | Description                                                                                                 |
-| --------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `intensity_mean`      | **Average Intensity.** Mean pixel intensity within the object.                                             |
-| `intensity_integrated` | **Total Intensity.** Sum of pixel intensities within the object.                                           |
-| `intensity_raw_min`   | **Minimum Intensity.** Lowest intensity value within the object.                                            |
-| `intensity_raw_max`   | **Maximum Intensity.** Highest intensity value within the object.                                           |
-| `intensity_raw_std`   | **Intensity Variation.** Standard deviation of pixel intensities within the object.                        |
+| Feature               | Description                                                                                       |
+| --------------------- | ------------------------------------------------------------------------------------------------- |
+| `intensity_mean`      | **Mean Intensity.** The average pixel intensity within the object.                                |
+| `intensity_integrated` | **Integrated Intensity.** The sum of all pixel intensities within the object.                     |
+| `intensity_raw_min`   | **Minimum Intensity.** The lowest pixel intensity within the object.                              |
+| `intensity_raw_max`   | **Maximum Intensity.** The highest pixel intensity within the object.                             |
+| `intensity_raw_std`   | **Intensity Standard Deviation.** The standard deviation of pixel intensities within the object. |
 
 ### 3. Enhanced Morphology Features
 
-These features provide more sophisticated measures of object shape.
+These features provide more sophisticated measures of object shape, derived from the basic properties.
 
 | Feature                  | Description                                                                                                                                                                                                                            |
 | ------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `aspect_ratio`           | **Elongation Ratio.** Calculated as `length / width`.                                                                                                                                                                                 |
-| `form_factor`            | **Circularity Proxy.** Calculated as `(4 * π * object_area) / (object_perimeter²)`. Closer to 1 = rounder.                                                                                                                               |
-| `perimeter_area_ratio`   | **Surface Area to Volume Proxy (2D).** Calculated as `object_perimeter / object_area`.                                                                                                                                               |
-| `convexity`              | Calculated as `object_area / shape_solidity`. Measures deviation from convex hull.                                                                                                                                                   |
+| `aspect_ratio`           | **Aspect Ratio.**  Calculated as `length / width`.  Indicates object elongation.                                                                                                                                                    |
+| `form_factor`            | **Form Factor (Circularity).** Calculated as `(4 * π * object_area) / (object_perimeter²)`. Values closer to 1 indicate a more circular shape.                                                                                        |
+| `perimeter_area_ratio`   | **Perimeter-Area Ratio.** Calculated as `object_perimeter / object_area`.  A 2D proxy for surface area-to-volume ratio; higher values indicate more complex shapes or smaller objects of the same shape.                           |
+| `convexity`              | **Convexity.** Calculated as `object_area / shape_solidity`.  Effectively the inverse of solidity, emphasizing deviation from a perfectly convex shape.                                                                              |
+| `num_branches`           | **Number of Branches.** The total number of branches detected in the object's skeleton.                                                                                                                                            |
+| `total_branch_length`    | **Total Branch Length.** The sum of the lengths of all branches in the object's skeleton.                                                                                                                                          |
+| `avg_branch_length`      | **Average Branch Length.** The average length of the branches in the object's skeleton.                                                                                                                                               |
+| `num_junctions`          | **Number of Junctions.** The number of junction points (where branches meet) in the object's skeleton.                                                                                                                               |
 
 ### 4. Summary & Contextual Information
 
-| Feature        | Description                                                                                                                                 |
-| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `object_count` | **Number of Objects Analyzed.** Total count of analyzed objects.                                                                           |
-| `cell_label`   | **Cellular Context.**  Indicates if an object is within a segmented cell (`"cell_[label]"`) or outside cells (`"outside_cell"`). |
+| Feature        | Description                                                                                                                               |
+| -------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
+| `object_count` | **Object Count.** The total number of objects analyzed.                                                                                  |
+| `cell_label`   | **Cell Label.**  Indicates the cell to which an object belongs (`"cell_[label]"`) or `"outside_cell"` if not assigned to a segmented cell. |
 
 ## Dependencies
 
