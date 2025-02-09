@@ -59,7 +59,7 @@ Before running this script, ensure you have the following installed:
 *   **Other Libraries:**
 
     ```bash
-    pip install numpy pandas scikit-image scipy
+    pip install numpy>=1.20 pandas>=1.3 scikit-image>=0.18 scipy>=1.7 napari[all] scikit-network networkx
     ```
 
 ## Usage Instructions
