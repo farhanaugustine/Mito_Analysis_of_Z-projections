@@ -2,7 +2,13 @@
 
 ## Overview
 
-This Python script provides an enhanced image analysis pipeline for fluorescence microscopy images. It leverages the [napari](https://napari.org/) viewer and the [napari-sam](https://github.com/napari/napari-segment-anything) plugin (note: the *repository* is named `napari-segment-anything`, but the *installable package* is `napari-sam`) to facilitate interactive segmentation of cells and intracellular objects (e.g., mitochondria) using the Segment Anything Model (SAM). Following segmentation, the script extracts a comprehensive set of features for each segmented object, including advanced morphology descriptors and intensity measurements, enabling detailed quantitative analysis of cellular structures.
+This Python script provides an enhanced image analysis pipeline for fluorescence microscopy images. It leverages the [napari](https://napari.org/) viewer and the [napari-sam](https://github.com/MIC-DKFZ/napari-sam) plugin (note: the *repository* is named `napari-sam`, and the *installable package* is `napari-sam`) to facilitate interactive segmentation of cells and intracellular objects (e.g., mitochondria) using the Segment Anything Model (SAM). Following segmentation, the script extracts a comprehensive set of features for each segmented object, including advanced morphology descriptors and intensity measurements, enabling detailed quantitative analysis of cellular structures.
+
+|napari-sam Operations | Commonly Used Mouse Keys|
+|---|---|
+| Select Intensity Points | Middle Mouse Button|
+| Deselect Intensity Points | Ctrl + Middle Mouse Button|
+|Undo Selection | Ctrl + Z |
 
 ## Key Features
 
