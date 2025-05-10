@@ -1,0 +1,20 @@
+authors:
+  - family-names: Augustine
+    given-names: Farhan
+    orcid: "https://orcid.org/0000-0002-8348-6039"
+cff-version: 0.1.0
+date-released: "02-12-2025"
+identifiers:
+  - description: "This Python script provides an enhanced image analysis pipeline for fluorescence microscopy images."
+    type: 
+    value: 
+keywords:
+  - FluorescentMicroscopy
+  - MitochondrialAnalysis
+  - 2DMitochondrialAnalysis
+license: 
+  - GPL-3.0
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/farhanaugustine/Mito_Analysis_of_Z-projections"
+title: "Mito_Analysis_of_Z-projections"
+
